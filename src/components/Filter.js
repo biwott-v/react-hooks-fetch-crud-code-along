@@ -1,18 +1,12 @@
-import React from "react";
 
-function Filter({ category, onCategoryChange }) {
+import React from 'react';
+
+function Filter({ onFilterChange }) {
   return (
-    <div className="Filter">
-      <select
-        name="filter"
-        value={category}
-        onChange={(e) => onCategoryChange(e.target.value)}
-      >
-        <option value="All">Filter by category</option>
-        <option value="Produce">Produce</option>
-        <option value="Dairy">Dairy</option>
-        <option value="Dessert">Dessert</option>
-      </select>
+    <div className="filter">
+      <button onClick={() => onFilterChange('all')}>All</button>
+      <button onClick={() => onFilterChange('inCart')}>In Cart</button>
+      <button onClick={() => onFilterChange('notInCart')}>Not In Cart</button>
     </div>
   );
 }

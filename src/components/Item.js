@@ -1,14 +1,29 @@
-import React from "react";
+function Item({ item, onUpdateItem, onDeleteItem }) {
+  const { id, name, category, isInCart } = item;
 
-function Item({ item }) {
+  const handleAddToCartClick = () => {
+    onUpdateItem({
+      ...item,
+      isInCart: !isInCart
+    });
+  };
+
   return (
-    <li className={item.isInCart ? "in-cart" : ""}>
-      <span>{item.name}</span>
-      <span className="category">{item.category}</span>
-      <button className={item.isInCart ? "remove" : "add"}>
-        {item.isInCart ? "Remove From" : "Add to"} Cart
+    <li className={isInCart ? 'in-cart' : ''}>
+      <span>{name}</span>
+      <span className="category">{category}</span>
+      <button 
+        className={isInCart ? 'remove' : 'add'}
+        onClick={handleAddToCartClick}
+      >
+        {isInCart ? 'Remove From' : 'Add to'} Cart
       </button>
-      <button className="remove">Delete</button>
+      <button 
+        className="delete" 
+        onClick={() => onDeleteItem(id)}
+      >
+        Delete
+      </button>
     </li>
   );
 }
